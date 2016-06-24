@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PageHeader extends React.Component {
+const PageHeader = React.createClass({
   render() {
     return (
       <div className="bs-docs-header" id="content">
@@ -11,6 +11,6 @@ class PageHeader extends React.Component {
       </div>
     );
   }
-}
+});
 
 export default PageHeader;

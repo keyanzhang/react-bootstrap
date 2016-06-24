@@ -3,10 +3,11 @@ import React, { PropTypes } from 'react';
 
 import { prefix } from './utils/bootstrapUtils';
 
-class NavbarHeader extends React.Component {
-  static contextTypes = {
+let NavbarHeader = React.createClass({
+
+  contextTypes: {
     $bs_navbar_bsClass: PropTypes.string
-  };
+  },
 
   render() {
     let { className, ...props } = this.props;
@@ -17,6 +18,6 @@ class NavbarHeader extends React.Component {
       <div {...props} className={classNames(className, headerClasses)} />
     );
   }
-}
+});
 
 export default NavbarHeader;

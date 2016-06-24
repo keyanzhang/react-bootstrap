@@ -15,8 +15,9 @@ import NavbarCollapse from './NavbarCollapse';
 import NavbarHeader from './NavbarHeader';
 import NavbarToggle from './NavbarToggle';
 
-class Navbar extends React.Component {
-  static propTypes = {
+let Navbar = React.createClass({
+
+  propTypes: {
     /**
      * Create a fixed navbar along the top of the screen, that scrolls with the page
      */
@@ -58,23 +59,25 @@ class Navbar extends React.Component {
      */
     expanded: React.PropTypes.bool,
 
-  };
+  },
 
-  static childContextTypes = {
+  childContextTypes: {
     $bs_navbar: PropTypes.bool,
     $bs_navbar_bsClass: PropTypes.string,
     $bs_navbar_onToggle: PropTypes.func,
     $bs_navbar_expanded: PropTypes.bool,
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'nav',
-    fixedTop: false,
-    fixedBottom: false,
-    staticTop: false,
-    inverse: false,
-    fluid: false
-  };
+  getDefaultProps() {
+    return {
+      componentClass: 'nav',
+      fixedTop: false,
+      fixedBottom: false,
+      staticTop: false,
+      inverse: false,
+      fluid: false
+    };
+  },
 
   getChildContext() {
     return {
@@ -83,15 +86,15 @@ class Navbar extends React.Component {
       $bs_navbar_onToggle: this.handleToggle,
       $bs_navbar_expanded: this.props.expanded
     };
-  }
+  },
 
-  handleToggle = () => {
+  handleToggle() {
     this.props.onToggle(!this.props.expanded);
-  };
+  },
 
-  isNavExpanded = () => {
+  isNavExpanded() {
     return !!this.props.expanded;
-  };
+  },
 
   render() {
     const {
@@ -131,7 +134,7 @@ class Navbar extends React.Component {
       </ComponentClass>
     );
   }
-}
+});
 
 const NAVBAR_STATES = [DEFAULT, INVERSE];
 

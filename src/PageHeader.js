@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class PageHeader extends React.Component {
+const PageHeader = React.createClass({
   render() {
     return (
       <div {...this.props} className={classNames(this.props.className, 'page-header')}>
@@ -9,6 +9,6 @@ class PageHeader extends React.Component {
       </div>
     );
   }
-}
+});
 
 export default PageHeader;

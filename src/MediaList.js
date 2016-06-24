@@ -1,10 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class MediaList extends React.Component {
-  static displayName = 'Media.List';
-  displayName = 'Media.List';
-
+const MediaList = React.createClass({
+  displayName: 'Media.List',
   render() {
     const {className, ...props} = this.props;
 
@@ -12,6 +10,6 @@ class MediaList extends React.Component {
       <ul {...props} className={classNames(className, 'media-list')}/>
     );
   }
-}
+});
 
 export default MediaList;

@@ -7,7 +7,7 @@ if (/docs/.test(version)) {
   version = version.split('-')[0];
 }
 
-class PageFooter extends React.Component {
+const PageFooter = React.createClass({
   render() {
     return (
         <footer className="bs-docs-footer" role="contentinfo">
@@ -54,6 +54,6 @@ class PageFooter extends React.Component {
         </footer>
       );
   }
-}
+});
 
 export default PageFooter;

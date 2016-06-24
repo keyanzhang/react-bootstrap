@@ -2,17 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 import elementType from 'react-prop-types/lib/elementType';
 
-class Row extends React.Component {
-  static propTypes = {
+const Row = React.createClass({
+  propTypes: {
     /**
      * You can use a custom element for this component
      */
     componentClass: elementType
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'div'
-  };
+  getDefaultProps() {
+    return {
+      componentClass: 'div'
+    };
+  },
 
   render() {
     let ComponentClass = this.props.componentClass;
@@ -23,6 +25,6 @@ class Row extends React.Component {
       </ComponentClass>
     );
   }
-}
+});
 
 export default Row;

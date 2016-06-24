@@ -2,21 +2,20 @@ import React from 'react';
 import elementType from 'react-prop-types/lib/elementType';
 import classNames from 'classnames';
 
-class MediaBody extends React.Component {
-  static displayName = 'Media.Body';
-
-  static propTypes = {
+const MediaBody = React.createClass({
+  displayName: 'Media.Body',
+  propTypes: {
     /**
      * You can use a custom element for the media body
      */
     componentClass: elementType
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'div'
-  };
-
-  displayName = 'Media.Body';
+  getDefaultProps() {
+    return {
+      componentClass: 'div'
+    };
+  },
 
   render() {
     const {componentClass: ComponentClass, className, ...props} = this.props;
@@ -25,6 +24,6 @@ class MediaBody extends React.Component {
       <ComponentClass {...props} className={classNames(className, 'media-body')}/>
     );
   }
-}
+});
 
 export default MediaBody;

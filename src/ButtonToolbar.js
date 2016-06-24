@@ -5,14 +5,17 @@ import { getClassSet } from './utils/bootstrapUtils';
 
 import Button from './Button';
 
-class ButtonToolbar extends React.Component {
-  static propTypes = {
-    bsSize: Button.propTypes.bsSize
-  };
+const ButtonToolbar = React.createClass({
 
-  static defaultProps = {
-    bsClass: 'btn-toolbar'
-  };
+  propTypes: {
+    bsSize: Button.propTypes.bsSize
+  },
+
+  getDefaultProps() {
+    return {
+      bsClass: 'btn-toolbar'
+    };
+  },
 
   render() {
     let classes = getClassSet(this.props);
@@ -27,6 +30,6 @@ class ButtonToolbar extends React.Component {
       </div>
     );
   }
-}
+});
 
 export default ButtonToolbar;

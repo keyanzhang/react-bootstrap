@@ -2,21 +2,20 @@ import React from 'react';
 import elementType from 'react-prop-types/lib/elementType';
 import classNames from 'classnames';
 
-class MediaHeading extends React.Component {
-  static displayName = 'Media.Heading';
-
-  static propTypes = {
+const MediaHeading = React.createClass({
+  displayName: 'Media.Heading',
+  propTypes: {
     /**
      * You can use a custom element for the media heading
      */
     componentClass: elementType
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'h4'
-  };
-
-  displayName = 'Media.Heading';
+  getDefaultProps() {
+    return {
+      componentClass: 'h4'
+    };
+  },
 
   render() {
     const {componentClass: ComponentClass, className, ...props} = this.props;
@@ -25,6 +24,6 @@ class MediaHeading extends React.Component {
       <ComponentClass {...props} className={classNames(className, 'media-heading')}/>
     );
   }
-}
+});
 
 export default MediaHeading;

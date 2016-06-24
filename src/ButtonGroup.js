@@ -6,8 +6,9 @@ import { bsClass, getClassSet, prefix } from './utils/bootstrapUtils';
 
 import Button from './Button';
 
-class ButtonGroup extends React.Component {
-  static propTypes = {
+const ButtonGroup = React.createClass({
+
+  propTypes: {
     vertical: React.PropTypes.bool,
     justified: React.PropTypes.bool,
     /**
@@ -22,13 +23,15 @@ class ButtonGroup extends React.Component {
         }
       }
     )
-  };
+  },
 
-  static defaultProps = {
-    block: false,
-    justified: false,
-    vertical: false
-  };
+  getDefaultProps() {
+    return {
+      block: false,
+      justified: false,
+      vertical: false
+    };
+  },
 
   render() {
     let classes = getClassSet(this.props);
@@ -49,6 +52,6 @@ class ButtonGroup extends React.Component {
       </div>
     );
   }
-}
+});
 
 export default bsClass('btn-group', ButtonGroup);

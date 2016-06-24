@@ -1,28 +1,30 @@
 import React from 'react';
 
-class Root extends React.Component {
-  /**
-   * Get the list of pages that are renderable
-   *
-   * @returns {Array}
-   */
-  static getPages() {
-    return [
-      'index.html',
-      'introduction.html',
-      'getting-started.html',
-      'components.html',
-      'support.html'
-    ];
-  }
+const Root = React.createClass({
+  statics: {
+    /**
+     * Get the list of pages that are renderable
+     *
+     * @returns {Array}
+     */
+    getPages() {
+      return [
+        'index.html',
+        'introduction.html',
+        'getting-started.html',
+        'components.html',
+        'support.html'
+      ];
+    }
+  },
 
-  static childContextTypes = {
+  childContextTypes: {
     metadata: React.PropTypes.object
-  };
+  },
 
   getChildContext() {
     return {metadata: Root.propData};
-  }
+  },
 
   render() {
     // Dump out our current props to a global object via a script tag so
@@ -71,7 +73,7 @@ class Root extends React.Component {
       </html>
     );
   }
-}
+});
 
 
 export default Root;

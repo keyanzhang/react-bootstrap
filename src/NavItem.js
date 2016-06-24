@@ -4,8 +4,9 @@ import React from 'react';
 import SafeAnchor from './SafeAnchor';
 import createChainedFunction from './utils/createChainedFunction';
 
-class NavItem extends React.Component {
-  static propTypes = {
+const NavItem = React.createClass({
+
+  propTypes: {
     active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     role: React.PropTypes.string,
@@ -13,12 +14,14 @@ class NavItem extends React.Component {
     onClick: React.PropTypes.func,
     onSelect: React.PropTypes.func,
     eventKey: React.PropTypes.any,
-  };
+  },
 
-  static defaultProps = {
-    active: false,
-    disabled: false
-  };
+  getDefaultProps() {
+    return {
+      active: false,
+      disabled: false
+    };
+  },
 
   render() {
     let {
@@ -51,9 +54,9 @@ class NavItem extends React.Component {
         />
       </li>
     );
-  }
+  },
 
-  handleClick = e => {
+  handleClick(e) {
     if (this.props.onSelect) {
       e.preventDefault();
 
@@ -61,7 +64,7 @@ class NavItem extends React.Component {
         this.props.onSelect(this.props.eventKey, e);
       }
     }
-  };
-}
+  }
+});
 
 export default NavItem;

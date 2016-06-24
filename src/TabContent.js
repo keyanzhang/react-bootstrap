@@ -10,9 +10,8 @@ let animationPropType = PropTypes.oneOfType([
   elementType
 ]);
 
-let TabContent = React.createClass({
-
-  propTypes: {
+class TabContent extends React.Component {
+  static propTypes = {
 
     /**
      * the Component used to render the TabContent
@@ -33,16 +32,16 @@ let TabContent = React.createClass({
      * Unmount the tab (remove it from the DOM) when it is no longer visible
      */
     unmountOnExit: PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     $bs_tabcontainer: React.PropTypes.shape({
       activeKey: React.PropTypes.any,
       onSelect: PropTypes.func,
     })
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     $bs_tabcontent: PropTypes.shape({
       bsClass: PropTypes.string,
       animation: animationPropType,
@@ -51,21 +50,17 @@ let TabContent = React.createClass({
       register: PropTypes.func,
       unmountOnExit: PropTypes.bool,
     }),
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      componentClass: 'div',
-      animation: true,
-      unmountOnExit: false
-    };
-  },
+  static defaultProps = {
+    componentClass: 'div',
+    animation: true,
+    unmountOnExit: false
+  };
 
-  getInitialState() {
-    return {
-      exitingPane: null
-    };
-  },
+  state = {
+    exitingPane: null
+  };
 
   getChildContext() {
     let exitingPane = this._exitingPane;
@@ -80,11 +75,11 @@ let TabContent = React.createClass({
         unmountOnExit: this.props.unmountOnExit
       }
     };
-  },
+  }
 
   componentWillMount() {
     this.panes = [];
-  },
+  }
 
   /**
    * This belongs in `componentWillReceiveProps()` but
@@ -103,7 +98,7 @@ let TabContent = React.createClass({
     if (nextActiveKey !== currentActiveKey && currentKeyIsStillValid) {
       this._exitingPane = currentActiveKey;
     }
-  },
+  }
 
   render() {
     let { className, children } = this.props;
@@ -116,19 +111,19 @@ let TabContent = React.createClass({
         { children }
       </Component>
     );
-  },
+  }
 
-  handlePaneExited() {
+  handlePaneExited = () => {
     this._exitingPane = null;
     this.forceUpdate();
-  },
+  };
 
   /**
    * This is unfortunately neccessary because the TabContent needs to know if
    * a TabPane is ever going to exit, since it may unmount and just leave the
    * TabContent to wait longingly forever for the handlePaneExited to be called.
    */
-  registerPane(eventKey) {
+  registerPane = eventKey => {
     let panes = this.panes;
 
     invariant(panes.indexOf(eventKey) === -1,
@@ -155,15 +150,15 @@ let TabContent = React.createClass({
         this.getContext('$bs_tabcontainer').onSelect();
       }
     };
-  },
+  };
 
-  getActiveKey(context = this.context) {
+  getActiveKey = context => {
     return this.getContext('$bs_tabcontainer', context).activeKey;
-  },
+  };
 
-  getContext(key, context = this.context) {
+  getContext = (key, context) => {
     return context[key] || {};
-  }
-});
+  };
+}
 
 export default setBsClass('tab', TabContent);

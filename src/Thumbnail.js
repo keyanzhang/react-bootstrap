@@ -5,13 +5,12 @@ import { bsClass, getClassSet } from './utils/bootstrapUtils';
 
 import SafeAnchor from './SafeAnchor';
 
-const Thumbnail = React.createClass({
-
-  propTypes: {
+class Thumbnail extends React.Component {
+  static propTypes = {
     alt: React.PropTypes.string,
     href: React.PropTypes.string,
     src: React.PropTypes.string
-  },
+  };
 
   render() {
     let classes = getClassSet(this.props);
@@ -41,6 +40,6 @@ const Thumbnail = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default bsClass('thumbnail', Thumbnail);

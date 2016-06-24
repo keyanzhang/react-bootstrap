@@ -3,20 +3,18 @@ import classNames from 'classnames';
 import ValidComponentChildren from './utils/ValidComponentChildren';
 import BreadcrumbItem from './BreadcrumbItem';
 
-const Breadcrumb = React.createClass({
-  propTypes: {
+class Breadcrumb extends React.Component {
+  static propTypes = {
     /**
      * bootstrap className
      * @private
      */
     bsClass: React.PropTypes.string
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      bsClass: 'breadcrumb'
-    };
-  },
+  static defaultProps = {
+    bsClass: 'breadcrumb'
+  };
 
   render() {
     const { className, ...props } = this.props;
@@ -30,12 +28,12 @@ const Breadcrumb = React.createClass({
         {ValidComponentChildren.map(this.props.children, this.renderBreadcrumbItem)}
       </ol>
     );
-  },
-
-  renderBreadcrumbItem(child, index) {
-    return cloneElement(child, { key: child.key || index });
   }
-});
+
+  renderBreadcrumbItem = (child, index) => {
+    return cloneElement(child, { key: child.key || index });
+  };
+}
 
 Breadcrumb.Item = BreadcrumbItem;
 

@@ -7,24 +7,21 @@ import {
   bsStyles, bsClass, getClassSet, prefix,
 } from './utils/bootstrapUtils';
 
-let Alert = React.createClass({
-
-  propTypes: {
+class Alert extends React.Component {
+  static propTypes = {
     onDismiss: React.PropTypes.func,
     /**
      * @private
      */
     dismissAfter: deprecated(React.PropTypes.number, 'No longer supported.'),
     closeLabel: React.PropTypes.string
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      closeLabel: 'Close Alert'
-    };
-  },
+  static defaultProps = {
+    closeLabel: 'Close Alert'
+  };
 
-  renderDismissButton() {
+  renderDismissButton = () => {
     return (
       <button
         type="button"
@@ -36,9 +33,9 @@ let Alert = React.createClass({
         <span>&times;</span>
       </button>
     );
-  },
+  };
 
-  renderSrOnlyDismissButton() {
+  renderSrOnlyDismissButton = () => {
     return (
       <button
         type="button"
@@ -48,7 +45,7 @@ let Alert = React.createClass({
         {this.props.closeLabel}
       </button>
     );
-  },
+  };
 
   render() {
     let classes = getClassSet(this.props);
@@ -67,18 +64,18 @@ let Alert = React.createClass({
         {isDismissable ? this.renderSrOnlyDismissButton() : null}
       </div>
     );
-  },
+  }
 
   componentDidMount() {
     if (this.props.dismissAfter && this.props.onDismiss) {
       this.dismissTimer = setTimeout(this.props.onDismiss, this.props.dismissAfter);
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.dismissTimer);
   }
-});
+}
 
 
 export default bsStyles(State.values(), State.INFO,

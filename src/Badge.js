@@ -4,19 +4,17 @@ import React from 'react';
 import { prefix } from './utils/bootstrapUtils';
 import ValidComponentChildren from './utils/ValidComponentChildren';
 
-const Badge = React.createClass({
-  propTypes: {
+class Badge extends React.Component {
+  static propTypes = {
     pullRight: React.PropTypes.bool
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      pullRight: false,
-      bsClass: 'badge'
-    };
-  },
+  static defaultProps = {
+    pullRight: false,
+    bsClass: 'badge'
+  };
 
-  hasContent() {
+  hasContent = () => {
     const { children } = this.props;
 
     return (
@@ -25,7 +23,7 @@ const Badge = React.createClass({
       typeof children === 'string' ||
       typeof children === 'number'
     );
-  },
+  };
 
   render() {
     let classes = {
@@ -41,6 +39,6 @@ const Badge = React.createClass({
       </span>
     );
   }
-});
+}
 
 export default Badge;

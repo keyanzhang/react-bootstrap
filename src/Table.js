@@ -1,24 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Table = React.createClass({
-  propTypes: {
+class Table extends React.Component {
+  static propTypes = {
     striped: React.PropTypes.bool,
     bordered: React.PropTypes.bool,
     condensed: React.PropTypes.bool,
     hover: React.PropTypes.bool,
     responsive: React.PropTypes.bool
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      bordered: false,
-      condensed: false,
-      hover: false,
-      responsive: false,
-      striped: false
-    };
-  },
+  static defaultProps = {
+    bordered: false,
+    condensed: false,
+    hover: false,
+    responsive: false,
+    striped: false
+  };
 
   render() {
     let classes = {
@@ -40,6 +38,6 @@ const Table = React.createClass({
       </div>
     ) : table;
   }
-});
+}
 
 export default Table;

@@ -128,11 +128,9 @@ describe('bootstrapUtils', ()=> {
     it('should work with createClass', ()=> {
       shouldWarn('expected one of ["minimal","boss","plaid"]');
 
-      let Component = bsStyles(['minimal', 'boss', 'plaid'], 'plaid')(
-        React.createClass({
-          render() { return <span/>; }
-        })
-      );
+      let Component = bsStyles(['minimal', 'boss', 'plaid'], 'plaid')(class extends React.Component {
+        render() { return <span/>; }
+      });
 
       let instance = render(<Component />);
 
@@ -194,11 +192,9 @@ describe('bootstrapUtils', ()=> {
     it('should work with createClass', ()=> {
       shouldWarn('expected one of ["smallish","micro","planet"]');
 
-      let Component = bsSizes(['smallish', 'micro', 'planet'], 'smallish')(
-        React.createClass({
-          render() { return <span/>; }
-        })
-      );
+      let Component = bsSizes(['smallish', 'micro', 'planet'], 'smallish')(class extends React.Component {
+        render() { return <span/>; }
+      });
 
       let instance = render(<Component />);
 

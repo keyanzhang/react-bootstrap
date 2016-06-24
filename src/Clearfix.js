@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import styleMaps from './styleMaps';
 import elementType from 'react-prop-types/lib/elementType';
 
-class Clearfix extends React.Component {
-  static propTypes = {
+const Clearfix = React.createClass({
+  propTypes: {
     /**
      * You can use a custom element for this component
      */
@@ -41,11 +41,13 @@ class Clearfix extends React.Component {
      * adds class `visible-lg-block`
      */
     visibleLgBlock: React.PropTypes.bool
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'div'
-  };
+  getDefaultProps() {
+    return {
+      componentClass: 'div'
+    };
+  },
 
   render() {
     let ComponentClass = this.props.componentClass;
@@ -64,6 +66,6 @@ class Clearfix extends React.Component {
       </ComponentClass>
     );
   }
-}
+});
 
 export default Clearfix;

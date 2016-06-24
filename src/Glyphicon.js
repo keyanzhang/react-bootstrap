@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import React from 'react';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-class Glyphicon extends React.Component {
-  static propTypes = {
+const Glyphicon = React.createClass({
+  propTypes: {
     /**
      * bootstrap className
      * @private
@@ -21,11 +21,13 @@ class Glyphicon extends React.Component {
       React.PropTypes.bool,
       'Use `<FormControl.Feedback>`.'
     ),
-  };
+  },
 
-  static defaultProps = {
-    bsClass: 'glyphicon',
-  };
+  getDefaultProps() {
+    return {
+      bsClass: 'glyphicon',
+    };
+  },
 
   render() {
     let className = classNames(this.props.className, {
@@ -40,6 +42,6 @@ class Glyphicon extends React.Component {
       </span>
     );
   }
-}
+});
 
 export default Glyphicon;

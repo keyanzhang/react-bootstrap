@@ -4,7 +4,7 @@ import NavMain from './NavMain';
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
 
-class NotFoundPage extends React.Component {
+const NotFoundPage = React.createClass({
   render() {
     return (
         <div>
@@ -18,6 +18,6 @@ class NotFoundPage extends React.Component {
         </div>
       );
   }
-}
+});
 
 export default NotFoundPage;

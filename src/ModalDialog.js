@@ -5,13 +5,14 @@ import { Sizes } from './styleMaps';
 import { bsClass, bsSizes, getClassSet, prefix } from './utils/bootstrapUtils';
 
 /* eslint-disable react/prop-types */
-class ModalDialog extends React.Component {
-  static propTypes = {
+const ModalDialog = React.createClass({
+
+  propTypes: {
     /**
      * A css class to apply to the Modal dialog DOM node.
      */
     dialogClassName: React.PropTypes.string
-  };
+  },
 
   render() {
     let modalStyle = {
@@ -41,7 +42,7 @@ class ModalDialog extends React.Component {
       </div>
     );
   }
-}
+});
 
 export default bsSizes([Sizes.LARGE, Sizes.SMALL],
   bsClass('modal', ModalDialog)

@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class Image extends React.Component {
-  static propTypes = {
+const Image = React.createClass({
+
+  propTypes: {
 
     /**
      * Sets image as responsive image
@@ -23,14 +24,16 @@ class Image extends React.Component {
      * Sets image shape as thumbnail
      */
     thumbnail: React.PropTypes.bool
-  };
+  },
 
-  static defaultProps = {
-    responsive: false,
-    rounded: false,
-    circle: false,
-    thumbnail: false
-  };
+  getDefaultProps() {
+    return {
+      responsive: false,
+      rounded: false,
+      circle: false,
+      thumbnail: false
+    };
+  },
 
   render() {
     const classes = {
@@ -44,6 +47,6 @@ class Image extends React.Component {
       <img {...this.props} className={classNames(this.props.className, classes)} />
     );
   }
-}
+});
 
 export default Image;

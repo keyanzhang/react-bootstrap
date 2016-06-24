@@ -4,21 +4,24 @@ import React from 'react';
 import SafeAnchor from './SafeAnchor';
 import createChainedFunction from './utils/createChainedFunction';
 
-class PageItem extends React.Component {
-  static propTypes = {
+const PageItem = React.createClass({
+
+  propTypes: {
     disabled: React.PropTypes.bool,
     previous: React.PropTypes.bool,
     next: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     onSelect: React.PropTypes.func,
     eventKey: React.PropTypes.any
-  };
+  },
 
-  static defaultProps = {
-    disabled: false,
-    previous: false,
-    next: false
-  };
+  getDefaultProps() {
+    return {
+      disabled: false,
+      previous: false,
+      next: false
+    };
+  },
 
   render() {
     const {
@@ -40,9 +43,9 @@ class PageItem extends React.Component {
         />
       </li>
     );
-  }
+  },
 
-  handleSelect = e => {
+  handleSelect(e) {
     if (this.props.onSelect || this.props.disabled) {
       e.preventDefault();
 
@@ -50,7 +53,7 @@ class PageItem extends React.Component {
         this.props.onSelect(this.props.eventKey, e);
       }
     }
-  };
-}
+  }
+});
 
 export default PageItem;

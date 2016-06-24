@@ -1,13 +1,12 @@
 import React from 'react';
 
-class Anchor extends React.Component {
-  static propTypes = {
+const Anchor = React.createClass({
+  propTypes: {
     id: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number
     ])
-  };
-
+  },
   render() {
     return (
       <a id={this.props.id} href={'#' + this.props.id} className="anchor">
@@ -16,6 +15,6 @@ class Anchor extends React.Component {
       </a>
     );
   }
-}
+});
 
 export default Anchor;

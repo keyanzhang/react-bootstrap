@@ -1,18 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class MediaRight extends React.Component {
-  static displayName = 'Media.Right';
-
-  static propTypes = {
+const MediaRight = React.createClass({
+  displayName: 'Media.Right',
+  propTypes: {
     /**
      * Align the media to the top, middle or bottom
      * of the media object
      */
     align: React.PropTypes.oneOf(['top', 'middle', 'bottom'])
-  };
-
-  displayName = 'Media.Right';
+  },
 
   render() {
     const {align, className, ...props} = this.props;
@@ -27,6 +24,6 @@ class MediaRight extends React.Component {
       <div {...props} className={classes} />
     );
   }
-}
+});
 
 export default MediaRight;

@@ -2,21 +2,20 @@ import classNames from 'classnames';
 import React from 'react';
 import elementType from 'react-prop-types/lib/elementType';
 
-class CarouselCaption extends React.Component {
-  static displayName = 'Carousel.Caption';
-
-  static propTypes = {
+const CarouselCaption = React.createClass({
+  displayName: 'Carousel.Caption',
+  propTypes: {
     /**
      * You can use a custom element for this component
      */
     componentClass: elementType
-  };
+  },
 
-  static defaultProps = {
-    componentClass: 'div'
-  };
-
-  displayName = 'Carousel.Caption';
+  getDefaultProps() {
+    return {
+      componentClass: 'div'
+    };
+  },
 
   render() {
     let ComponentClass = this.props.componentClass;
@@ -27,6 +26,6 @@ class CarouselCaption extends React.Component {
       </ComponentClass>
     );
   }
-}
+});
 
 export default CarouselCaption;

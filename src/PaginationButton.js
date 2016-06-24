@@ -4,8 +4,9 @@ import elementType from 'react-prop-types/lib/elementType';
 
 import createChainedFunction from './utils/createChainedFunction';
 
-class PaginationButton extends React.Component {
-  static propTypes = {
+const PaginationButton = React.createClass({
+
+  propTypes: {
     className: React.PropTypes.string,
     eventKey: React.PropTypes.any,
     onSelect: React.PropTypes.func,
@@ -16,14 +17,16 @@ class PaginationButton extends React.Component {
      * You can use a custom element for this component
      */
     buttonComponentClass: elementType
-  };
+  },
 
-  static defaultProps = {
-    active: false,
-    disabled: false
-  };
+  getDefaultProps() {
+    return {
+      active: false,
+      disabled: false
+    };
+  },
 
-  handleClick = event => {
+  handleClick(event) {
     if (this.props.disabled) {
       return;
     }
@@ -31,7 +34,7 @@ class PaginationButton extends React.Component {
     if (this.props.onSelect) {
       this.props.onSelect(this.props.eventKey, event);
     }
-  };
+  },
 
   render() {
     const {
@@ -59,6 +62,6 @@ class PaginationButton extends React.Component {
       </li>
     );
   }
-}
+});
 
 export default PaginationButton;

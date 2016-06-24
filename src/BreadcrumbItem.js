@@ -3,8 +3,8 @@ import React from 'react';
 
 import SafeAnchor from './SafeAnchor';
 
-class BreadcrumbItem extends React.Component {
-  static propTypes = {
+const BreadcrumbItem = React.createClass({
+  propTypes: {
     /**
      * If set to true, renders `span` instead of `a`
      */
@@ -35,11 +35,13 @@ class BreadcrumbItem extends React.Component {
      * `target` attribute for the inner `a` element
      */
     target: React.PropTypes.string
-  };
+  },
 
-  static defaultProps = {
-    active: false,
-  };
+  getDefaultProps() {
+    return {
+      active: false,
+    };
+  },
 
   render() {
     const {
@@ -74,6 +76,6 @@ class BreadcrumbItem extends React.Component {
       </li>
     );
   }
-}
+});
 
 export default BreadcrumbItem;

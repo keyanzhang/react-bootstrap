@@ -5,8 +5,8 @@ import ValidComponentChildren from '../../src/utils/ValidComponentChildren';
 import createChainedFunction from '../../src/utils/createChainedFunction';
 import SafeAnchor from '../../src/SafeAnchor';
 
-class SubNav extends React.Component {
-  static propTypes = {
+const SubNav = React.createClass({
+  propTypes: {
     onSelect: React.PropTypes.func,
     active: React.PropTypes.bool,
     activeHref: React.PropTypes.string,
@@ -17,15 +17,17 @@ class SubNav extends React.Component {
     title: React.PropTypes.string,
     text: React.PropTypes.node,
     target: React.PropTypes.string
-  };
+  },
 
-  static defaultProps = {
-    bsClass: 'nav',
-    active: false,
-    disabled: false
-  };
+  getDefaultProps() {
+    return {
+      bsClass: 'nav',
+      active: false,
+      disabled: false
+    };
+  },
 
-  handleClick = e => {
+  handleClick(e) {
     if (this.props.onSelect) {
       e.preventDefault();
 
@@ -33,9 +35,9 @@ class SubNav extends React.Component {
         this.props.onSelect(this.props.eventKey, e);
       }
     }
-  };
+  },
 
-  isActive = ({ props }) => {
+  isActive({ props }) {
     if (props.active) {
       return true;
     }
@@ -56,9 +58,9 @@ class SubNav extends React.Component {
     }
 
     return false;
-  };
+  },
 
-  getChildActive = child => {
+  getChildActive(child) {
     if (child.props.active) {
       return true;
     }
@@ -74,7 +76,7 @@ class SubNav extends React.Component {
     }
 
     return child.props.active;
-  };
+  },
 
   render() {
     const classes = {
@@ -98,9 +100,9 @@ class SubNav extends React.Component {
         </ul>
       </li>
     );
-  }
+  },
 
-  renderNavItem = (child, index) => {
+  renderNavItem(child, index) {
     return cloneElement(
       child,
       {
@@ -109,7 +111,7 @@ class SubNav extends React.Component {
         key: child.key ? child.key : index
       }
     );
-  };
-}
+  }
+});
 
 export default SubNav;

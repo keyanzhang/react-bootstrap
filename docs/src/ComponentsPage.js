@@ -110,18 +110,20 @@ let ScrollSpy = ({ href, onBefore, onAfter }) => (
   />
 );
 
-class ComponentsPage extends React.Component {
-  state = {
-    activeNavItemHref: null
-  };
+const ComponentsPage = React.createClass({
+  getInitialState() {
+    return {
+      activeNavItemHref: null
+    };
+  },
 
-  getMain = () => {
+  getMain() {
     return this.refs.main;
-  };
+  },
 
-  handleNavItemSelect = (key, e) => {
+  handleNavItemSelect(key, e) {
     window.location = e.target.href;
-  };
+  },
 
   componentDidMount() {
     this.afterSections = {};
@@ -140,9 +142,9 @@ class ComponentsPage extends React.Component {
         }
       }
     }
-  }
+  },
 
-  setActiveNavItem = () => {
+  setActiveNavItem() {
     let activeNavItemHref = null;
 
     for (const href of Object.keys(this.afterSections)) {
@@ -154,9 +156,9 @@ class ComponentsPage extends React.Component {
     }
 
     this.setState({ activeNavItemHref });
-  };
+  },
 
-  renderScrollSpy = href => {
+  renderScrollSpy(href) {
     return (
       <ScrollSpy
         href={href}
@@ -164,19 +166,19 @@ class ComponentsPage extends React.Component {
         onAfter={this.onAfter}
       />
     );
-  };
+  },
 
-  onBefore = href => {
+  onBefore(href) {
     this.afterSections[href] = false;
     this.updateActiveHref();
-  };
+  },
 
-  onAfter = href => {
+  onAfter(href) {
     this.afterSections[href] = true;
     this.updateActiveHref();
-  };
+  },
 
-  updateActiveHref = () => {
+  updateActiveHref() {
     if (this.updateActiveHrefHandle != null) {
       return;
     }
@@ -185,7 +187,7 @@ class ComponentsPage extends React.Component {
       this.updateActiveHrefHandle = null;
       this.setActiveNavItem();
     });
-  };
+  },
 
   render() {
     return (
@@ -465,6 +467,6 @@ class ComponentsPage extends React.Component {
         </div>
       );
   }
-}
+});
 
 export default ComponentsPage;

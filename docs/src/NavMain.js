@@ -22,10 +22,10 @@ const NAV_LINKS = {
   }
 };
 
-class NavMain extends React.Component {
-  static propTypes = {
+const NavMain = React.createClass({
+  propTypes: {
     activePage: React.PropTypes.string
-  };
+  },
 
   render() {
     let links = Object.keys(NAV_LINKS).map(this.renderNavItem).concat([
@@ -53,9 +53,9 @@ class NavMain extends React.Component {
         </Navbar.Collapse>
       </Navbar>
     );
-  }
+  },
 
-  renderNavItem = linkName => {
+  renderNavItem(linkName) {
     let link = NAV_LINKS[linkName];
 
     return (
@@ -63,7 +63,7 @@ class NavMain extends React.Component {
           <Link to={link.link}>{link.title}</Link>
         </li>
       );
-  };
-}
+  }
+});
 
 export default NavMain;

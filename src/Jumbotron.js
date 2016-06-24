@@ -2,15 +2,17 @@ import React from 'react';
 import classNames from 'classnames';
 import elementType from 'react-prop-types/lib/elementType';
 
-class Jumbotron extends React.Component {
-  static propTypes = {
+const Jumbotron = React.createClass({
+  propTypes: {
     /**
      * You can use a custom element for this component
      */
     componentClass: elementType
-  };
+  },
 
-  static defaultProps = { componentClass: 'div' };
+  getDefaultProps() {
+    return { componentClass: 'div' };
+  },
 
   render() {
     const ComponentClass = this.props.componentClass;
@@ -21,6 +23,6 @@ class Jumbotron extends React.Component {
       </ComponentClass>
     );
   }
-}
+});
 
 export default Jumbotron;

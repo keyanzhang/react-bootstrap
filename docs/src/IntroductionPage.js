@@ -5,7 +5,7 @@ import NavMain from './NavMain';
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
 
-class IntroductionPage extends React.Component {
+const IntroductionPage = React.createClass({
   render() {
     return (
       <div>
@@ -210,6 +210,6 @@ React.render(buttonGroupInstance, mountNode);`
       </div>
     );
   }
-}
+});
 
 export default IntroductionPage;

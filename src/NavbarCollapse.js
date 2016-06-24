@@ -4,11 +4,12 @@ import { prefix } from './utils/bootstrapUtils';
 
 import Collapse from './Collapse';
 
-class NavbarCollapse extends React.Component {
-  static contextTypes = {
+let NavbarCollapse = React.createClass({
+
+  contextTypes: {
     $bs_navbar_bsClass: PropTypes.string,
     $bs_navbar_expanded: PropTypes.bool
-  };
+  },
 
   render() {
     let { children, ...props } = this.props;
@@ -25,6 +26,6 @@ class NavbarCollapse extends React.Component {
       </Collapse>
     );
   }
-}
+});
 
 export default NavbarCollapse;

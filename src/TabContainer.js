@@ -7,9 +7,8 @@ let idPropType = PropTypes.oneOfType([
 ]);
 
 
-let TabContainer = React.createClass({
-
-  propTypes: {
+class TabContainer extends React.Component {
+  static propTypes = {
     /**
      * HTML id attribute, required if no `generateChildId` prop
      * is specified.
@@ -54,15 +53,15 @@ let TabContainer = React.createClass({
      * @controllable onSelect
      */
     activeKey: PropTypes.any
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     $bs_tabcontainer: React.PropTypes.shape({
       activeKey: PropTypes.any,
       onSelect: PropTypes.func,
       getId: PropTypes.func
     })
-  },
+  };
 
   getChildContext() {
     const { activeKey, generateChildId, id } = this.props;
@@ -76,18 +75,18 @@ let TabContainer = React.createClass({
           ((key, type) => (id ? `${id}-${type}-${key}` : null))
       },
     };
-  },
+  }
 
   componentWillUnmount() {
     // isMounted() isn't `true` at this point;
     this.unmounting = true;
-  },
+  }
 
-  handleSelect(key) {
+  handleSelect = key => {
     if (!this.unmounting) {
       this.props.onSelect(key);
     }
-  },
+  };
 
   render() {
     const { children, ...props } = this.props;
@@ -97,6 +96,6 @@ let TabContainer = React.createClass({
 
     return React.cloneElement(React.Children.only(children), props);
   }
-});
+}
 
 export default uncontrollable(TabContainer, { activeKey: 'onSelect' });

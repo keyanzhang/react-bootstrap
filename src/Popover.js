@@ -4,9 +4,8 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { prefix } from './utils/bootstrapUtils';
 
-const Popover = React.createClass({
-
-  propTypes: {
+class Popover extends React.Component {
+  static propTypes = {
 
     /**
      * An html id attribute, necessary for accessibility
@@ -49,14 +48,12 @@ const Popover = React.createClass({
      * Title text
      */
     title: React.PropTypes.node
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      placement: 'right',
-      bsClass: 'popover'
-    };
-  },
+  static defaultProps = {
+    placement: 'right',
+    bsClass: 'popover'
+  };
 
   render() {
     const classes = {
@@ -94,15 +91,15 @@ const Popover = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
-  renderTitle() {
+  renderTitle = () => {
     return (
       <h3 className={prefix(this.props, 'title')}>
         {this.props.title}
       </h3>
     );
-  }
-});
+  };
+}
 
 export default Popover;

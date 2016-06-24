@@ -4,9 +4,8 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { prefix } from './utils/bootstrapUtils';
 
-const Tooltip = React.createClass({
-
-  propTypes: {
+class Tooltip extends React.Component {
+  static propTypes = {
     /**
      * An html id attribute, necessary for accessibility
      * @type {string}
@@ -48,14 +47,12 @@ const Tooltip = React.createClass({
      * Title text
      */
     title: React.PropTypes.node
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      bsClass: 'tooltip',
-      placement: 'right'
-    };
-  },
+  static defaultProps = {
+    bsClass: 'tooltip',
+    placement: 'right'
+  };
 
   render() {
     const classes = {
@@ -89,6 +86,6 @@ const Tooltip = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Tooltip;

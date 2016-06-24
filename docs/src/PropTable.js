@@ -32,15 +32,14 @@ function getPropsData(component, metadata) {
 }
 
 
-const PropTable = React.createClass({
-
-  contextTypes: {
+class PropTable extends React.Component {
+  static contextTypes = {
     metadata: React.PropTypes.object
-  },
+  };
 
   componentWillMount() {
     this.propsData = getPropsData(this.props.component, this.context.metadata);
-  },
+  }
 
   render() {
     let propsData = this.propsData;
@@ -64,9 +63,9 @@ const PropTable = React.createClass({
         </tbody>
       </Table>
     );
-  },
+  }
 
-  _renderRows(propsData) {
+  _renderRows = propsData => {
     return Object.keys(propsData)
       .sort()
       .filter(propName => propsData[propName].type && !propsData[propName].doclets.private )
@@ -95,9 +94,9 @@ const PropTable = React.createClass({
           </tr>
         );
       });
-  },
+  };
 
-  renderRequiredLabel(prop) {
+  renderRequiredLabel = prop => {
     if (!prop.required) {
       return null;
     }
@@ -105,9 +104,9 @@ const PropTable = React.createClass({
     return (
       <Label>required</Label>
     );
-  },
+  };
 
-  renderControllableNote(prop, propName) {
+  renderControllableNote = (prop, propName) => {
     let controllable = prop.doclets.controllable;
     let isHandler = this.getDisplayTypeName(prop.type.name) === 'function';
 
@@ -136,9 +135,9 @@ const PropTable = React.createClass({
         </small>
       </div>
     );
-  },
+  };
 
-  getType(prop) {
+  getType = prop => {
     let type = prop.type || {};
     let name = this.getDisplayTypeName(type.name);
     let doclets = prop.doclets || {};
@@ -167,9 +166,9 @@ const PropTable = React.createClass({
     default:
       return name;
     }
-  },
+  };
 
-  getDisplayTypeName(typeName) {
+  getDisplayTypeName = typeName => {
     if (typeName === 'func') {
       return 'function';
     } else if (typeName === 'bool') {
@@ -177,9 +176,9 @@ const PropTable = React.createClass({
     }
 
     return typeName;
-  },
+  };
 
-  renderEnum(enumType) {
+  renderEnum = enumType => {
     const enumValues = enumType.value || [];
 
     const renderedEnumValues = [];
@@ -198,8 +197,8 @@ const PropTable = React.createClass({
     return (
       <span>one of: {renderedEnumValues}</span>
     );
-  }
-});
+  };
+}
 
 
 export default PropTable;

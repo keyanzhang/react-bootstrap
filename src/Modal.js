@@ -22,9 +22,8 @@ import Title from './ModalTitle';
 import Footer from './ModalFooter';
 
 /* eslint-disable react/prop-types */
-const Modal = React.createClass({
-
-  propTypes: {
+class Modal extends React.Component {
+  static propTypes = {
     ...BaseModal.propTypes,
     ...ModalDialog.propTypes,
 
@@ -113,36 +112,32 @@ const Modal = React.createClass({
      * Callback fired after the Modal finishes transitioning out
      */
     onExited: React.PropTypes.func
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     '$bs_onModalHide': React.PropTypes.func
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      ...BaseModal.defaultProps,
-      bsClass: 'modal',
-      animation: true,
-      dialogComponentClass: ModalDialog,
-    };
-  },
+  static defaultProps = {
+    ...BaseModal.defaultProps,
+    bsClass: 'modal',
+    animation: true,
+    dialogComponentClass: ModalDialog,
+  };
 
-  getInitialState() {
-    return {
-      modalStyles: {}
-    };
-  },
+  state = {
+    modalStyles: {}
+  };
 
   getChildContext() {
     return {
       $bs_onModalHide: this.props.onHide
     };
-  },
+  }
 
   componentWillUnmount() {
     events.off(window, 'resize', this.handleWindowResize);
-  },
+  }
 
   render() {
     let {
@@ -195,10 +190,9 @@ const Modal = React.createClass({
         { modal }
       </BaseModal>
     );
-  },
+  }
 
-
-  _onShow(...args) {
+  _onShow = () => {
     events.on(window, 'resize', this.handleWindowResize);
 
     this.setState(
@@ -208,29 +202,29 @@ const Modal = React.createClass({
     if (this.props.onEntering) {
       this.props.onEntering(...args);
     }
-  },
+  };
 
-  _onHide(...args) {
+  _onHide = () => {
     events.off(window, 'resize', this.handleWindowResize);
 
     if (this.props.onExited) {
       this.props.onExited(...args);
     }
-  },
+  };
 
-  handleDialogClick(e) {
+  handleDialogClick = e => {
     if (e.target !== e.currentTarget) {
       return;
     }
 
     this.props.onHide();
-  },
+  };
 
-  handleWindowResize() {
+  handleWindowResize = () => {
     this.setState(this._getStyles());
-  },
+  };
 
-  _getStyles() {
+  _getStyles = () => {
     if (!canUseDOM) {
       return {};
     }
@@ -248,8 +242,8 @@ const Modal = React.createClass({
         paddingLeft: !bodyIsOverflowing && modalIsOverflowing ? getScrollbarSize() : void 0
       }
     };
-  }
-});
+  };
+}
 
 Modal.Body = Body;
 Modal.Header = Header;

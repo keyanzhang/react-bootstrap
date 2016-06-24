@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import elementType from 'react-prop-types/lib/elementType';
 
-const Grid = React.createClass({
-  propTypes: {
+class Grid extends React.Component {
+  static propTypes = {
     /**
      * Turn any fixed-width grid layout into a full-width layout by this property.
      *
@@ -14,14 +14,12 @@ const Grid = React.createClass({
      * You can use a custom element for this component
      */
     componentClass: elementType
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      componentClass: 'div',
-      fluid: false
-    };
-  },
+  static defaultProps = {
+    componentClass: 'div',
+    fluid: false
+  };
 
   render() {
     let ComponentClass = this.props.componentClass;
@@ -35,6 +33,6 @@ const Grid = React.createClass({
       </ComponentClass>
     );
   }
-});
+}
 
 export default Grid;

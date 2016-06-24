@@ -7,9 +7,8 @@ import { bsClass, getClassSet } from './utils/bootstrapUtils';
 import PaginationButton from './PaginationButton';
 import SafeAnchor from './SafeAnchor';
 
-const Pagination = React.createClass({
-
-  propTypes: {
+class Pagination extends React.Component {
+  static propTypes = {
     activePage: React.PropTypes.number,
     items: React.PropTypes.number,
     maxButtons: React.PropTypes.number,
@@ -62,25 +61,23 @@ const Pagination = React.createClass({
      * You can use a custom element for the buttons
      */
     buttonComponentClass: elementType
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      activePage: 1,
-      items: 1,
-      maxButtons: 0,
-      first: false,
-      last: false,
-      prev: false,
-      next: false,
-      ellipsis: true,
-      boundaryLinks: false,
-      buttonComponentClass: SafeAnchor,
-      bsClass: 'pagination'
-    };
-  },
+  static defaultProps = {
+    activePage: 1,
+    items: 1,
+    maxButtons: 0,
+    first: false,
+    last: false,
+    prev: false,
+    next: false,
+    ellipsis: true,
+    boundaryLinks: false,
+    buttonComponentClass: SafeAnchor,
+    bsClass: 'pagination'
+  };
 
-  renderPageButtons() {
+  renderPageButtons = () => {
     let pageButtons = [];
     let startPage, endPage, hasHiddenPagesAfter;
     let {
@@ -181,9 +178,9 @@ const Pagination = React.createClass({
     }
 
     return pageButtons;
-  },
+  };
 
-  renderPrev() {
+  renderPrev = () => {
     if (!this.props.prev) {
       return null;
     }
@@ -201,9 +198,9 @@ const Pagination = React.createClass({
         </span>
       </PaginationButton>
     );
-  },
+  };
 
-  renderNext() {
+  renderNext = () => {
     if (!this.props.next) {
       return null;
     }
@@ -221,9 +218,9 @@ const Pagination = React.createClass({
         </span>
       </PaginationButton>
     );
-  },
+  };
 
-  renderFirst() {
+  renderFirst = () => {
     if (!this.props.first) {
       return null;
     }
@@ -241,9 +238,9 @@ const Pagination = React.createClass({
         </span>
       </PaginationButton>
     );
-  },
+  };
 
-  renderLast() {
+  renderLast = () => {
     if (!this.props.last) {
       return null;
     }
@@ -261,7 +258,7 @@ const Pagination = React.createClass({
         </span>
       </PaginationButton>
     );
-  },
+  };
 
   render() {
     return (
@@ -277,6 +274,6 @@ const Pagination = React.createClass({
       </ul>
     );
   }
-});
+}
 
 export default bsClass('pagination', Pagination);

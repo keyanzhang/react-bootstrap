@@ -25,8 +25,8 @@ function getDefaultActiveKeyFromChildren(children) {
   return defaultActiveKey;
 }
 
-const Tabs = React.createClass({
-  propTypes: {
+class Tabs extends React.Component {
+  static propTypes = {
 
     /**
      * Mark the Tab with a matching `eventKey` as active.
@@ -104,18 +104,16 @@ const Tabs = React.createClass({
      * @deprecated Use TabContainer to create differently shaped tab layouts.
      */
     standalone: React.PropTypes.bool
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      bsClass: 'tab',
-      animation: true,
-      tabWidth: 2,
-      position: 'top',
-      standalone: false,
-      unmountOnExit: false
-    };
-  },
+  static defaultProps = {
+    bsClass: 'tab',
+    animation: true,
+    tabWidth: 2,
+    position: 'top',
+    standalone: false,
+    unmountOnExit: false
+  };
 
   render() {
     let {
@@ -221,23 +219,23 @@ const Tabs = React.createClass({
         </div>
       </TabContainer>
     );
-  },
+  }
 
-  getActiveKey(props = this.props) {
+  getActiveKey = props => {
     let { activeKey, children } = props;
     return activeKey === undefined ? getDefaultActiveKeyFromChildren(children) : activeKey;
-  },
+  };
 
-  renderPane(child, index) {
+  renderPane = (child, index) => {
     return cloneElement(
       child,
       {
         key: child.key ? child.key : index,
       }
     );
-  },
+  };
 
-  renderTab(child) {
+  renderTab = child => {
     if (child.props.title == null) {
       return null;
     }
@@ -253,9 +251,9 @@ const Tabs = React.createClass({
         {title}
       </NavItem>
     );
-  },
+  };
 
-  getColProps({tabWidth, paneWidth}) {
+  getColProps = ({tabWidth, paneWidth}) => {
     let tabsColProps;
     if (tabWidth instanceof Object) {
       tabsColProps = tabWidth;
@@ -276,8 +274,7 @@ const Tabs = React.createClass({
     }
 
     return {tabsColProps, panesColProps};
-  }
-
-});
+  };
+}
 
 export default uncontrollable(Tabs, { activeKey: 'onSelect' });
